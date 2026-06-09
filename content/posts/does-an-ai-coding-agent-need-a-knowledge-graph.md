@@ -20,7 +20,7 @@ To answer it you need a control: something that gives the agent the same kind of
 
 ## The test
 
-One agent (OpenAI’s Codex), one large production codebase, and three set-ups: the agent on its own; the agent with Graphify; the agent with RepoDoc. Each set-up got the same three tasks, the kind I actually use agents for day to day:
+The test used one agent (OpenAI’s Codex), one large production codebase, and three set-ups: the agent on its own; the agent with Graphify; the agent with RepoDoc. Each set-up got the same three tasks, the kind I actually use agents for day to day:
 
 1. **Explain.** Describe how one subsystem works, in enough detail that an engineer could debug it next week.
 2. **Build.** Add a small new screen to the product, matching the patterns the project already uses.
@@ -30,7 +30,7 @@ That makes nine runs, each in a fresh worktree at the same commit. A separate mo
 
 ## Results
 
-The first table covers the three tasks together: quality is the average judge score, and wall time and tokens are totals. For the two aided set-ups each cell also shows the value as a percentage of the agent alone, so figures under 100% mean less and figures over 100% mean more. Graphify’s 129% wall time, for example, means its runs took 29% longer in total than the unaided agent’s. The best figure in each column is bold.
+The first table covers the three tasks together: quality is the average judge score, and wall time and tokens are totals. For the two aided set-ups each cell also shows the value as a percentage of the bare agent’s figure. Graphify’s 129% wall time, for example, means its runs took 29% longer in total than the bare agent’s. The best figure in each column is bold.
 
 | Set-up        | Quality (of 10) | Wall time | Tokens |
 | :------------ | --------------: | --------: | -----: |
@@ -42,9 +42,9 @@ Here is how each claim fared.
 
 **On quality, neither aid made a difference.** The judge’s averages sit within a tenth of a point of one another. The graph produced no deeper fixes and no more accurate explanations.
 
-**On tokens, the claim held for the explain task only.** There Graphify used about 45% fewer tokens than the bare agent, and RepoDoc about 55% fewer while also finishing fastest. A head start pays when the job is to go and understand something broad. On the build task the savings were under 10%, and on the fix the claim reversed: both aids used more tokens than the bare agent, RepoDoc more than twice as many. The summary row therefore flatters both aids. Excluding the explain task, Graphify’s token total was level with the bare agent’s, and RepoDoc’s was about 44% higher.
+**On tokens, the claim held for the explain task only.** There Graphify used about 45% fewer tokens than the bare agent, and RepoDoc about 55% fewer while also finishing fastest. A head start pays when the job is to understand something broad. On the build task the savings were under 10%, and on the fix the claim reversed: both aids used more tokens than the bare agent, RepoDoc more than twice as many. The combined totals therefore flatter both aids. Excluding the explain task, Graphify’s token total was level with the bare agent’s, and RepoDoc’s was about 44% higher.
 
-**On speed, Graphify was slower overall.** It was quicker than the bare agent on the explain task and slower on the other two. On the bug fix the bare agent finished in under four minutes; Graphify took more than eight, the slowest run of the test. More than half of that went on rebuilding its graph after the fix was already written, a step its own integration instructions require. And since the stack trace already named the missing method, finding it was never the hard part.
+**On speed, Graphify was slower overall.** It was quicker than the bare agent on the explain task and slower on the other two. On the bug fix the bare agent finished in under four minutes; Graphify took more than eight, the slowest run of the test. More than half of that went on rebuilding its graph after the fix was already written, a step its own integration instructions require.
 
 The most thorough fix came from the RepoDoc run: the agent treated the bug as an inconsistency between two code paths and unified them, rather than patching the missing method. That came from reading the code, not from any index, and it was not free: the extra reading is why that run used the most tokens of the three attempts at the bug.
 
@@ -86,11 +86,11 @@ I can see three reasons.
 
 ## What this doesn’t show
 
-This was one agent, one codebase, and three tasks. Graphify may do better in situations this test did not cover: an unfamiliar repository with poor documentation; a cross-cutting refactor, where seeing the blast radius of a change matters; questions too vague to give a search index a useful keyword. I also followed its integration instructions exactly, including the costly rebuilds; used more loosely, it might come out ahead.
+This was one agent, one codebase, and three tasks. Graphify may do better in situations this test did not cover: an unfamiliar repository with poor documentation; a cross-cutting refactor, where seeing everything a change touches matters; questions too vague to give a search index a useful keyword. I also followed its integration instructions exactly, including the costly rebuilds; used more loosely, it might come out ahead.
 
 ## What I take from it
 
-The lesson is not that Graphify is bad. It is that most of the measured benefit came from having an index at all, not from the graph. The plain ranked search, much smaller and quicker to build, matched or beat Graphify on quality and speed on every task. On the explain task, the only one where the token savings were substantial, it saved more than Graphify too. And nothing in these runs looked like the tenfold improvement the marketing describes. Before adopting a clever tool, it is worth checking how much of the benefit a plain one gives you.
+The lesson is not that Graphify is bad. It is that most of the measured benefit came from having an index at all, not from the graph. The ranked search, much smaller and quicker to build, matched or beat Graphify on quality and speed on every task. On the explain task, the only one where the token savings were large, it saved more than Graphify too. And nothing in these runs looked like the tenfold improvement the marketing describes. Before adopting a clever tool, it is worth checking how much of the benefit a plain one gives you.
 
 {{< divider >}}
 
