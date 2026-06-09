@@ -1,0 +1,5 @@
+{{- /* {{< callout label="Note" >}}…{{< /callout >}} */ -}}
+<aside class="callout">
+  {{- with .Get "label" }}<p class="callout__label">{{ . }}</p>{{ end }}
+  <div class="callout__body">{{ .Inner | .Page.RenderString }}</div>
+</aside>

@@ -1,0 +1,9 @@
+{{- /* A hairline-separated list row (the design's ArticleCard). Context: a Page. */ -}}
+<a class="post-card" href="{{ .RelPermalink }}">
+  {{ partial "post-meta.html" . }}
+  <h2 class="post-card__title">{{ .Title }}</h2>
+  {{- with .Description }}<p class="post-card__standfirst">{{ . }}</p>{{ end }}
+  {{- with .Params.tags }}
+  <span class="post-card__tags">{{ range . }}<span>{{ . }}</span>{{ end }}</span>
+  {{- end }}
+</a>

@@ -1,0 +1,25 @@
+<!-- @dsCard group="Colors" viewport="700x150" name="Parchment — type" subtitle="Warm cream text & UI, strongest to faintest" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; padding: 22px 24px; }
+  .row { display: flex; gap: 12px; }
+  .sw { flex: 1; }
+  .chip { height: 60px; border-radius: var(--radius-md); border: 1px solid var(--border-hairline); }
+  .lab { font-family: var(--font-meta); font-size: 11px; letter-spacing: .04em; color: var(--text-faint); margin-top: 8px; }
+  .hex { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--parchment-100)"></div><div class="lab">strong</div><div class="hex">#F3ECDD</div></div>
+    <div class="sw"><div class="chip" style="background:var(--parchment-200)"></div><div class="lab">body</div><div class="hex">#E7DECB</div></div>
+    <div class="sw"><div class="chip" style="background:var(--parchment-300)"></div><div class="lab">muted</div><div class="hex">#C8BDA6</div></div>
+    <div class="sw"><div class="chip" style="background:var(--parchment-400)"></div><div class="lab">faint</div><div class="hex">#9B917E</div></div>
+    <div class="sw"><div class="chip" style="background:var(--parchment-500)"></div><div class="lab">disabled</div><div class="hex">#6F6757</div></div>
+  </div>
+</body>
+</html>

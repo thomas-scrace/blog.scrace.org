@@ -1,0 +1,72 @@
+baseURL = "https://blog.scrace.org/"
+languageCode = "en-gb"
+title = "Thomas Scrace"
+enableRobotsTXT = true
+enableEmoji = false
+timeZone = "Europe/London"
+# Keep tag/term titles in their natural case (lowercase, per the design),
+# not auto Title Case. Section/taxonomy titles come from _index.md instead.
+capitalizeListTitles = false
+
+# ---------------------------------------------------------------------------
+# Site parameters — edit these to make the blog your own.
+# ---------------------------------------------------------------------------
+[params]
+  description = "Essays and notes on reading, attention, and the slow web, by Thomas Scrace."
+  author = "Thomas Scrace"
+  # Address for the "Write to me" / footer "Email" links (mailto:).
+  email = "tom@scrace.org"
+  initials = "TS"
+  bylineRole = "Reader & writer"
+  tagline = "Written & set in Georgia, by lamplight."
+  # Default Open Graph / social-preview image (1200×630). Per-post `image:`
+  # front matter overrides it.
+  ogImage = "/og-default.png"
+
+[taxonomies]
+  tag = "tags"
+
+# Top navigation — the masthead. Notebook / Reading point at tag pages; edit
+# freely. The wordmark always links home.
+[menu]
+  [[menu.main]]
+    name = "Essays"
+    url = "/"
+    weight = 1
+  [[menu.main]]
+    name = "Notebook"
+    url = "/tags/notebook/"
+    weight = 2
+  [[menu.main]]
+    name = "Reading"
+    url = "/tags/reading/"
+    weight = 3
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 4
+
+[markup]
+  [markup.goldmark.renderer]
+    # Raw HTML in Markdown is dropped. This is a deliberate zero-JavaScript
+    # safety net: a stray <script> pasted into a post can never reach the page.
+    # Use the provided shortcodes (pullquote, callout, divider) for rich blocks.
+    unsafe = false
+  [markup.goldmark.extensions.typographer]
+    # Curly quotes, en/em dashes, ellipses — on by default; stated for clarity.
+  [markup.highlight]
+    # Plain, server-rendered <pre><code> with no colour spans and no client
+    # highlighter. Keeps the CSS tiny and the output free of JavaScript.
+    codeFences = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+# Home and each section get an RSS feed (Hugo writes index.xml).
+[outputs]
+  home = ["HTML", "RSS"]
+  section = ["HTML", "RSS"]
+
+[sitemap]
+  changefreq = "weekly"
+  priority = 0.5

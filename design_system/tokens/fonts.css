@@ -1,0 +1,20 @@
+/* ============================================================
+   FONTS — web-safe, system-installed only. No webfonts.
+   A classical serif (Georgia & kin) carries the brand; a quiet
+   humanist sans handles small meta labels; mono for code.
+   ============================================================ */
+
+:root {
+  /* Serif — the voice of the brand. Georgia first, with the most
+     graceful old-style fallbacks across platforms. */
+  --font-serif: Georgia, "Times New Roman", serif;
+
+  /* Sans — only for eyebrows, meta, and UI micro-labels.
+     Used sparingly, usually uppercase with tracking. */
+  --font-sans: ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+
+  /* Mono — code, timestamps, monospaced figures. */
+  --font-mono: ui-monospace, "SF Mono", Menlo,
+    "Courier New", monospace;
+}

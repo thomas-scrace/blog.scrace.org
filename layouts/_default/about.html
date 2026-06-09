@@ -1,0 +1,20 @@
+{{ define "main" }}
+<div class="wrap">
+  <div class="about__head">
+    <span class="avatar avatar--lg" aria-hidden="true">{{ site.Params.initials }}</span>
+    <div>
+      <p class="about__eyebrow eyebrow">About</p>
+      <h1 class="about__name">{{ site.Params.author | default .Title }}</h1>
+    </div>
+  </div>
+
+  <div class="prose">
+    {{ .Content }}
+  </div>
+
+  <div class="about__actions">
+    {{- with site.Params.email }}<a class="btn btn--primary" href="mailto:{{ . }}">{{ partial "icon.html" (dict "name" "mail") }} Write to me</a>{{ end }}
+    <a class="btn btn--secondary" href="{{ "index.xml" | relURL }}">{{ partial "icon.html" (dict "name" "rss") }} Subscribe</a>
+  </div>
+</div>
+{{ end }}

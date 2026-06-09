@@ -1,0 +1,5 @@
+{{- /* {{< pullquote cite="Author" >}}…{{< /pullquote >}} */ -}}
+<figure class="pullquote">
+  <blockquote><span class="qmark" aria-hidden="true">“</span>{{ .Inner | .Page.RenderString (dict "display" "inline") }}<span class="qmark" aria-hidden="true">”</span></blockquote>
+  {{- with .Get "cite" }}<figcaption>{{ . }}</figcaption>{{ end }}
+</figure>

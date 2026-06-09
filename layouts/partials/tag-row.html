@@ -1,0 +1,13 @@
+{{- /* Tag pills as navigation links (zero-JS replacement for the kit's filter).
+       Param "current": "home" on the home page, else the current term's
+       RelPermalink. */ -}}
+{{- $current := .current -}}
+<nav class="tag-row" aria-label="Browse by tag">
+  <a class="tag-pill{{ if eq $current "home" }} is-active{{ end }}"{{ if eq $current "home" }} aria-current="page"{{ end }} href="{{ "/" | relURL }}">all</a>
+  {{- with site.GetPage "/tags" -}}
+    {{- range .Pages.ByTitle -}}
+      {{- $active := eq $current .RelPermalink -}}
+      <a class="tag-pill{{ if $active }} is-active{{ end }}"{{ if $active }} aria-current="page"{{ end }} href="{{ .RelPermalink }}">{{ .Title }}</a>
+    {{- end -}}
+  {{- end }}
+</nav>

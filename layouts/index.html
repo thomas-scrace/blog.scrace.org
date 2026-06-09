@@ -1,0 +1,34 @@
+{{ define "main" }}
+<div class="wrap">
+  {{- with .Content }}<div class="home-intro">{{ . }}</div>{{ end }}
+
+  {{- $posts := sort (where site.RegularPages "Section" "posts") "Date" "desc" -}}
+  {{- $featured := "" -}}
+  {{- with where $posts "Params.featured" true }}{{ $featured = index . 0 }}{{ else }}{{ with $posts }}{{ $featured = index . 0 }}{{ end }}{{ end -}}
+
+  {{- with $featured }}
+  <a class="featured" href="{{ .RelPermalink }}">
+    <p class="meta">
+      <span class="lead-mark">Latest</span>
+      <span aria-hidden="true">·</span>
+      <span>{{ .Params.kicker | default "Essay" }}</span>
+      <span aria-hidden="true">·</span>
+      <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+      <span aria-hidden="true">·</span>
+      <span>{{ .ReadingTime }} min</span>
+    </p>
+    <h1 class="featured__title">{{ .Title }}</h1>
+    {{- with .Description }}<p class="featured__standfirst">{{ . }}</p>{{ end }}
+    <span class="read-more">Read the essay {{ partial "icon.html" (dict "name" "arrow-up-right") }}</span>
+  </a>
+  {{- end }}
+
+  {{ partial "tag-row.html" (dict "current" "home") }}
+
+  <div class="post-list">
+    {{- range $posts }}
+      {{- if and $featured (eq .Permalink $featured.Permalink) }}{{ else }}{{ partial "post-card.html" . }}{{ end }}
+    {{- end }}
+  </div>
+</div>
+{{ end }}

@@ -1,0 +1,19 @@
+{{- /* Markdown image render hook: lazy-loaded, dimensioned where possible to
+       avoid layout shift. Page-bundle images get real width/height. */ -}}
+{{- $u := .Destination -}}
+{{- $img := "" -}}
+{{- if not (strings.HasPrefix $u "http") -}}
+  {{- with .Page.Resources.GetMatch $u }}{{ $img = . }}{{ end -}}
+{{- end -}}
+{{- $alt := .PlainText -}}
+{{- /* Only emit a src for a resolved page resource or a plain relative/http(s)
+       URL — never a javascript:/data: destination, regardless of case. */ -}}
+{{- $safe := or $img (strings.HasPrefix $u "/") (strings.HasPrefix (lower $u) "http") -}}
+{{- if $safe -}}
+<img src="{{ $u | safeURL }}" alt="{{ $alt }}"
+  {{- with .Title }} title="{{ . }}"{{ end }}
+  {{- with $img }} width="{{ .Width }}" height="{{ .Height }}"{{ end }}
+  loading="lazy" decoding="async">
+{{- else -}}
+<img src="" alt="{{ $alt }}">
+{{- end -}}

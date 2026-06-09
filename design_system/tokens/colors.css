@@ -1,0 +1,80 @@
+/* ============================================================
+   COLORS — warm "ink & parchment" dark palette
+   A classical, literary feel: near-black warm ink for the page,
+   parchment-cream for type, a restrained gilt-gold accent.
+   ============================================================ */
+
+:root {
+  /* --- Ink: warm near-black backgrounds & surfaces (dark→light) --- */
+  --ink-900: #14120F; /* page background — deepest */
+  --ink-850: #181511;
+  --ink-800: #1D1A15; /* raised surface / card */
+  --ink-700: #25211B; /* elevated surface / hover fill */
+  --ink-600: #2F2A22; /* sunken wells, code blocks */
+  --ink-500: #3A342B; /* hairline borders, dividers */
+  --ink-400: #4A4339; /* stronger borders */
+
+  /* --- Parchment: warm cream type & UI on dark (light→dim) --- */
+  --parchment-100: #F3ECDD; /* highest-contrast text, headings */
+  --parchment-200: #E7DECB; /* primary body text */
+  --parchment-300: #C8BDA6; /* secondary text */
+  --parchment-400: #9B917E; /* muted text, captions */
+  --parchment-500: #6F6757; /* faint, disabled, placeholder */
+
+  /* --- Gilt: gold accent for links, emphasis, rules --- */
+  --gilt-300: #E0C690; /* hover / bright */
+  --gilt-400: #CBA968; /* primary accent */
+  --gilt-500: #A8884E; /* pressed / deep */
+  --gilt-glow: rgba(203, 169, 104, 0.16); /* faint accent wash */
+
+  /* --- Terracotta: rare warm secondary for marks & alerts --- */
+  --terra-400: #C06A4E;
+  --terra-500: #9E5240;
+
+  /* --- Sage: cool counterpoint for success / quiet tags --- */
+  --sage-400: #8AA081;
+  --sage-500: #6B8064;
+
+  /* ============================================================
+     SEMANTIC ALIASES — reference these in components
+     ============================================================ */
+
+  /* Surfaces */
+  --surface-page: var(--ink-900);
+  --surface-raised: var(--ink-800);
+  --surface-hover: var(--ink-700);
+  --surface-sunken: var(--ink-600);
+  --surface-card: var(--ink-850);
+
+  /* Text */
+  --text-strong: var(--parchment-100);
+  --text-body: var(--parchment-200);
+  --text-muted: var(--parchment-300);
+  --text-faint: var(--parchment-400);
+  --text-disabled: var(--parchment-500);
+  --text-on-accent: var(--ink-900);
+
+  /* Accent */
+  --accent: var(--gilt-400);
+  --accent-hover: var(--gilt-300);
+  --accent-press: var(--gilt-500);
+  --accent-wash: var(--gilt-glow);
+
+  /* Lines */
+  --border-hairline: var(--ink-500);
+  --border-strong: var(--ink-400);
+  --rule-accent: var(--gilt-500);
+
+  /* Status */
+  --status-note: var(--gilt-400);
+  --status-warn: var(--terra-400);
+  --status-quiet: var(--sage-400);
+
+  /* Selection */
+  --selection-bg: rgba(203, 169, 104, 0.22);
+}
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--text-strong);
+}

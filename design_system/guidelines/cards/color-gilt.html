@@ -1,0 +1,26 @@
+<!-- @dsCard group="Colors" viewport="700x160" name="Gilt — accent" subtitle="The single gold accent: links, emphasis, rules" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; padding: 22px 24px; display:flex; align-items:center; gap: 28px; }
+  .row { display: flex; gap: 12px; flex: 1; }
+  .sw { flex: 1; }
+  .chip { height: 64px; border-radius: var(--radius-md); border: 1px solid var(--border-hairline); }
+  .lab { font-family: var(--font-meta); font-size: 11px; letter-spacing: .04em; color: var(--text-faint); margin-top: 8px; }
+  .hex { font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+  .demo { font-family: var(--font-serif); font-size: 19px; color: var(--text-body); width: 220px; line-height: 1.6; }
+  .demo a { color: var(--accent); border-bottom: 1px solid var(--accent-press); }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="sw"><div class="chip" style="background:var(--gilt-300)"></div><div class="lab">hover</div><div class="hex">#E0C690</div></div>
+    <div class="sw"><div class="chip" style="background:var(--gilt-400)"></div><div class="lab">accent</div><div class="hex">#CBA968</div></div>
+    <div class="sw"><div class="chip" style="background:var(--gilt-500)"></div><div class="lab">press</div><div class="hex">#A8884E</div></div>
+  </div>
+  <div class="demo">A gilded thread of <a href="#">a single link</a> through the prose.</div>
+</body>
+</html>

@@ -1,0 +1,79 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="color-scheme" content="dark light">
+<meta name="theme-color" content="#14120f" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f4edde" media="(prefers-color-scheme: light)">
+
+{{- /* An "article" is a post, not just any single page (keeps the About page
+       from emitting article:* metadata with an empty date). */ -}}
+{{- $isArticle := and .IsPage (eq .Section "posts") -}}
+
+{{- $title := site.Title -}}
+{{- if and (not .IsHome) .Title (ne .Title site.Title) -}}
+  {{- $title = printf "%s · %s" .Title site.Title -}}
+{{- end -}}
+<title>{{ $title }}</title>
+
+{{- $desc := "" -}}
+{{- with .Description }}{{ $desc = . }}{{ end -}}
+{{- if not $desc -}}
+  {{- if eq .Kind "term" -}}
+    {{- $desc = printf "Essays and notes tagged “%s” on %s." .Title site.Title -}}
+  {{- else -}}
+    {{- $desc = site.Params.description -}}
+  {{- end -}}
+{{- end -}}
+{{- $desc = $desc | plainify | strings.TrimSpace | truncate 200 -}}
+<meta name="description" content="{{ $desc }}">
+{{- with site.Params.author }}
+<meta name="author" content="{{ . }}">
+{{- end }}
+
+{{- /* Canonical — honours canonicalUrl front matter if set */ -}}
+{{- $canonical := .Permalink -}}
+{{- with .Params.canonicalUrl }}{{ $canonical = . }}{{ end -}}
+<link rel="canonical" href="{{ $canonical }}">
+
+{{- /* One minified, fingerprinted stylesheet — the only asset besides the favicon */ -}}
+{{- $css := resources.Get "css/main.css" | minify | fingerprint "sha256" -}}
+<link rel="stylesheet" href="{{ $css.RelPermalink }}" integrity="{{ $css.Data.Integrity }}">
+
+<link rel="icon" href="{{ "favicon.svg" | relURL }}" type="image/svg+xml">
+
+{{- /* RSS autodiscovery */ -}}
+{{- $rss := .OutputFormats.Get "rss" -}}
+{{- with $rss }}
+<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ .Permalink }}">
+{{- else }}
+<link rel="alternate" type="application/rss+xml" title="{{ site.Title }}" href="{{ "index.xml" | absURL }}">
+{{- end }}
+
+{{- /* Open Graph + Twitter card — metadata only, no scripts */ -}}
+{{- $ogTitle := cond .IsHome site.Title .Title -}}
+{{- $ogImage := "" -}}
+{{- with .Params.image }}{{ $ogImage = . | absURL }}{{ else }}{{ with site.Params.ogImage }}{{ $ogImage = . | absURL }}{{ end }}{{ end -}}
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:title" content="{{ $ogTitle }}">
+<meta property="og:description" content="{{ $desc }}">
+<meta property="og:type" content="{{ cond $isArticle "article" "website" }}">
+<meta property="og:url" content="{{ .Permalink }}">
+{{- with $ogImage }}
+<meta property="og:image" content="{{ . }}">
+{{- end }}
+{{- if $isArticle }}
+<meta property="article:published_time" content="{{ .Date.Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
+{{- with .Lastmod }}{{ if ne . $.Date }}
+<meta property="article:modified_time" content="{{ .Format "2006-01-02T15:04:05Z07:00" | safeHTML }}">
+{{- end }}{{ end }}
+{{- range .Params.tags }}
+<meta property="article:tag" content="{{ . }}">
+{{- end }}
+{{- end }}
+<meta name="twitter:card" content="{{ cond (ne $ogImage "") "summary_large_image" "summary" }}">
+<meta name="twitter:title" content="{{ $ogTitle }}">
+<meta name="twitter:description" content="{{ $desc }}">
+{{- with $ogImage }}
+<meta name="twitter:image" content="{{ . }}">
+{{- end }}
+
+{{ hugo.Generator }}

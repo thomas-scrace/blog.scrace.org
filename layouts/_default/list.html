@@ -1,0 +1,19 @@
+{{ define "main" }}
+<div class="wrap">
+  <div class="page-head">
+    <p class="page-head__eyebrow eyebrow">Index</p>
+    <h1>{{ .Title }}</h1>
+    {{- with .Content }}{{ . }}{{ else }}<p>Everything published here, newest first.</p>{{ end }}
+  </div>
+
+  {{- $pages := .Pages -}}
+  {{- if eq .Kind "section" }}{{ $pages = sort .Pages "Date" "desc" }}{{ end -}}
+
+  {{- range $pages.GroupByDate "2006" }}
+  <section class="year-group">
+    <p class="year-group__label">{{ .Key }}</p>
+    {{- range .Pages }}{{ partial "post-card.html" . }}{{ end }}
+  </section>
+  {{- end }}
+</div>
+{{ end }}

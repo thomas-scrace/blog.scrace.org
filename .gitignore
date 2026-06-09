@@ -1,0 +1,20 @@
+# Hugo build output — generated, never committed.
+/public/
+/resources/_gen/
+.hugo_build.lock
+
+# Hugo deploy / module caches
+/.hugo/
+
+# Wrangler / Cloudflare
+.wrangler/
+.dev.vars
+
+# OS cruft
+.DS_Store
+**/.DS_Store
+
+# Editor cruft
+*.swp
+.idea/
+.vscode/

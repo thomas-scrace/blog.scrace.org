@@ -1,0 +1,84 @@
+/* ============================================================
+   BASE — element defaults that bake the brand into raw HTML.
+   Applies the warm ink page, parchment type, and serif voice
+   so that an unstyled document already feels like the blog.
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: var(--surface-page);
+  /* faint warm vignette + paper grain feel, all in CSS */
+  background-image: radial-gradient(
+    120% 80% at 50% -10%,
+    rgba(203, 169, 104, 0.05),
+    transparent 60%
+  );
+  background-attachment: fixed;
+  color: var(--text-body);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  font-kerning: normal;
+  font-feature-settings: "kern" 1, "liga" 1, "onum" 1;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--text-strong);
+  font-weight: var(--weight-regular);
+  line-height: var(--leading-snug);
+  margin: 0;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+p {
+  margin: 0;
+}
+
+/* Small sans label utility — eyebrows, kickers, meta */
+.eyebrow {
+  font-family: var(--font-meta);
+  font-size: var(--text-2xs);
+  font-weight: 600;
+  letter-spacing: var(--tracking-wider);
+  text-transform: uppercase;
+  color: var(--text-faint);
+}
+
+/* Focus ring — gilt, never browser-blue */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--ring-focus);
+  border-radius: var(--radius-sm);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

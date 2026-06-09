@@ -1,0 +1,37 @@
+{{- printf "<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>" | safeHTML }}
+{{- /* Page-relative feed: home → all posts; a section/term → that page's own
+       pages. Channel title reflects the page, not just the site. */ -}}
+{{- $pages := .RegularPages -}}
+{{- if .IsHome }}{{ $pages = where site.RegularPages "Section" "posts" }}{{ end -}}
+{{- $pages = sort $pages "Date" "desc" | first 25 -}}
+{{- $channelTitle := cond .IsHome site.Title (printf "%s · %s" .Title site.Title) -}}
+{{- $channelDesc := cond (ne (string .Description) "") (string .Description) site.Params.description -}}
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>{{ $channelTitle | transform.XMLEscape | safeHTML }}</title>
+    <link>{{ .Permalink }}</link>
+    <description>{{ $channelDesc | transform.XMLEscape | safeHTML }}</description>
+    <language>{{ site.LanguageCode }}</language>
+    {{- with site.Params.author }}<managingEditor>{{ with site.Params.email }}{{ . }} {{ end }}({{ . }})</managingEditor>
+    <webMaster>{{ with site.Params.email }}{{ . }} {{ end }}({{ . }})</webMaster>{{ end }}
+    <copyright>© {{ now.Year }} {{ site.Params.author }}</copyright>
+    {{- with .OutputFormats.Get "rss" }}
+    <atom:link href="{{ .Permalink }}" rel="self" type="application/rss+xml" />
+    {{- end }}
+    {{- with index $pages 0 }}
+    <lastBuildDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</lastBuildDate>
+    {{- end }}
+    {{- range $pages }}
+    <item>
+      <title>{{ .Title | transform.XMLEscape | safeHTML }}</title>
+      <link>{{ .Permalink }}</link>
+      <pubDate>{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 -0700" | safeHTML }}</pubDate>
+      {{- $d := .Date }}{{ with .Lastmod }}{{ if ne . $d }}<atom:updated>{{ .Format "2006-01-02T15:04:05Z07:00" | safeHTML }}</atom:updated>{{ end }}{{ end }}
+      <guid>{{ .Permalink }}</guid>
+      {{- with .Description }}<description>{{ . | transform.XMLEscape | safeHTML }}</description>{{ end }}
+      <content:encoded>{{ printf "<![CDATA[%s]]>" .Content | safeHTML }}</content:encoded>
+      {{- range .Params.tags }}<category>{{ . | transform.XMLEscape | safeHTML }}</category>{{ end }}
+    </item>
+    {{- end }}
+  </channel>
+</rss>

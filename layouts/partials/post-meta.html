@@ -1,0 +1,8 @@
+{{- /* Eyebrow meta line: kicker · date · reading time. Context: a Page. */ -}}
+<p class="meta">
+  <span class="lead-mark">{{ .Params.kicker | default "Essay" }}</span>
+  <span aria-hidden="true">·</span>
+  <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2 January 2006" }}</time>
+  <span aria-hidden="true">·</span>
+  <span>{{ .ReadingTime }} min</span>
+</p>

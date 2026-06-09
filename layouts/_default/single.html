@@ -1,0 +1,38 @@
+{{ define "main" }}
+<article class="wrap wrap--article">
+  <a class="back-link" href="{{ "/" | relURL }}">{{ partial "icon.html" (dict "name" "arrow-left") }} All essays</a>
+
+  {{ partial "post-meta.html" . }}
+  <h1 class="article__title">{{ .Title }}</h1>
+  {{- with .Description }}<p class="article__standfirst">{{ . }}</p>{{ end }}
+
+  <div class="byline">
+    <span class="avatar" aria-hidden="true">{{ site.Params.initials }}</span>
+    <div>
+      <p class="byline__name">{{ .Params.author | default site.Params.author }}</p>
+      <p class="byline__role">{{ site.Params.bylineRole }}</p>
+    </div>
+  </div>
+
+  <div class="prose{{ if .Params.dropcap }} prose--dropcap{{ end }}">
+    {{ .Content }}
+  </div>
+
+  {{- with .Params.tags }}
+  <div class="tag-footer">
+    {{- range . }}<a class="tag-pill" href="{{ (printf "/tags/%s/" (. | urlize)) | relURL }}">{{ . }}</a>{{ end }}
+  </div>
+  {{- end }}
+
+  {{- $next := slice -}}
+  {{- range sort (where site.RegularPages "Section" "posts") "Date" "desc" -}}
+    {{- if and (ne .Permalink $.Permalink) (lt (len $next) 2) }}{{ $next = $next | append . }}{{ end -}}
+  {{- end -}}
+  {{- with $next }}
+  <div class="read-next">
+    <p class="meta read-next__label">Read next</p>
+    {{- range . }}{{ partial "post-card.html" . }}{{ end }}
+  </div>
+  {{- end }}
+</article>
+{{ end }}

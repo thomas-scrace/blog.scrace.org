@@ -1,0 +1,16 @@
+# Cloudflare Workers Static Assets configuration.
+#
+# This deploys the contents of ./public as a static-assets-only Worker
+# (no server code). `wrangler deploy` reads this file; the GitHub Actions
+# workflow runs that for you on every push to master.
+#
+# See README.md ("How deployment works") for the one-time Cloudflare setup
+# and the alternative Cloudflare Pages route.
+
+name = "blog"
+compatibility_date = "2026-06-07"
+
+[assets]
+directory = "./public"
+# Serve the generated 404.html for unknown paths.
+not_found_handling = "404-page"

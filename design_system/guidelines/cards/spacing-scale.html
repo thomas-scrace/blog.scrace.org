@@ -1,0 +1,29 @@
+<!-- @dsCard group="Spacing" viewport="700x170" name="Spacing scale" subtitle="4px base, leaning roomy for reading" -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<link rel="stylesheet" href="../../styles.css">
+<style>
+  body { margin: 0; padding: 24px 26px; }
+  .row { display:flex; align-items:flex-end; gap: 16px; }
+  .col { display:flex; flex-direction:column; align-items:center; gap: 8px; }
+  .bar { width: 100%; background: var(--accent); border-radius: var(--radius-xs); opacity: .85; }
+  .lab { font-family: var(--font-mono); font-size: 10px; color: var(--text-faint); }
+  .col { width: 46px; }
+</style>
+</head>
+<body>
+  <div class="row">
+    <div class="col"><div class="bar" style="height:4px"></div><div class="lab">1·4</div></div>
+    <div class="col"><div class="bar" style="height:8px"></div><div class="lab">2·8</div></div>
+    <div class="col"><div class="bar" style="height:12px"></div><div class="lab">3·12</div></div>
+    <div class="col"><div class="bar" style="height:16px"></div><div class="lab">4·16</div></div>
+    <div class="col"><div class="bar" style="height:24px"></div><div class="lab">5·24</div></div>
+    <div class="col"><div class="bar" style="height:32px"></div><div class="lab">6·32</div></div>
+    <div class="col"><div class="bar" style="height:40px"></div><div class="lab">7·40</div></div>
+    <div class="col"><div class="bar" style="height:56px"></div><div class="lab">8·56</div></div>
+    <div class="col"><div class="bar" style="height:80px"></div><div class="lab">9·80</div></div>
+  </div>
+</body>
+</html>

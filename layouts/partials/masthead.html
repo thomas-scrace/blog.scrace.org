@@ -1,0 +1,21 @@
+<header class="masthead">
+  <div class="masthead__inner">
+    <a class="wordmark" href="{{ "/" | relURL }}">{{ site.Params.author | default site.Title }}</a>
+    <nav class="nav" aria-label="Primary">
+      {{- $cur := .RelPermalink -}}
+      {{- $section := .Section -}}
+      {{- range site.Menus.main -}}
+        {{- /* Skip menu items whose target page doesn't exist (e.g. a tag with
+               no published posts), so the nav never links to a 404. */ -}}
+        {{- if or (eq .URL "/") (site.GetPage .URL) -}}
+          {{- $u := .URL | relURL -}}
+          {{- $active := eq $cur $u -}}
+          {{- if and (eq .URL "/") (or $.IsHome (eq $section "posts")) }}{{ $active = true }}{{ end -}}
+          <a class="nav__link{{ if $active }} is-active{{ end }}"{{ if $active }} aria-current="page"{{ end }} href="{{ $u }}">{{ .Name }}</a>
+        {{- end -}}
+      {{- end }}
+      <span class="nav__sep" aria-hidden="true"></span>
+      <a class="nav__icon" href="{{ "index.xml" | relURL }}" aria-label="RSS feed">{{ partial "icon.html" (dict "name" "rss") }}</a>
+    </nav>
+  </div>
+</header>

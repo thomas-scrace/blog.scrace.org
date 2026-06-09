@@ -1,0 +1,49 @@
+name: Build & deploy
+
+# A push to master (i.e. merging a PR into master) builds the site, verifies
+# it contains zero JavaScript, and — only then — deploys to Cloudflare.
+# Pull requests run the same build + verification as a gate, without deploying.
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+
+permissions:
+  contents: read
+
+# Pin Hugo so CI output matches local output exactly. Bump deliberately.
+env:
+  HUGO_VERSION: "0.158.0"
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Install Hugo (extended, pinned)
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: ${{ env.HUGO_VERSION }}
+          extended: true
+
+      - name: Build (minified)
+        run: hugo --gc --minify --baseURL "https://blog.scrace.org/"
+
+      - name: Verify zero JavaScript
+        run: bash scripts/check-no-js.sh public
+
+      - name: Deploy to Cloudflare
+        # Only on a real push to master — never on pull requests.
+        if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: deploy

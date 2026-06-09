@@ -1,0 +1,38 @@
+/* ============================================================
+   EFFECTS — radii, borders, shadows, motion.
+   Restraint is the rule: soft, low shadows; small radii; calm,
+   slow fades. Nothing bounces. Nothing glows hard.
+   ============================================================ */
+
+:root {
+  /* --- Corner radii — modest, paper-like --- */
+  --radius-none: 0;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 7px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+
+  /* --- Border widths --- */
+  --border-thin: 1px;
+  --border-thick: 2px;
+
+  /* --- Shadows — deep, soft, low-opacity for dark surfaces --- */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 14px rgba(0, 0, 0, 0.45);
+  --shadow-lg: 0 14px 40px rgba(0, 0, 0, 0.55);
+  --shadow-inset: inset 0 1px 0 rgba(243, 236, 221, 0.04);
+
+  /* Accent ring for focus — gilt, not blue */
+  --ring-focus: 0 0 0 2px var(--surface-page), 0 0 0 4px var(--gilt-400);
+
+  /* --- Motion — slow, literary, no bounce --- */
+  --ease-standard: cubic-bezier(0.22, 0.61, 0.36, 1); /* @kind other */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1); /* @kind other */
+  --duration-fast: 120ms; /* @kind other */
+  --duration: 220ms; /* @kind other */
+  --duration-slow: 420ms; /* @kind other */
+
+  /* --- Texture --- */
+  --texture-paper: rgba(243, 236, 221, 0.012);
+}

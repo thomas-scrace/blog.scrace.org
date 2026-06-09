@@ -1,0 +1,27 @@
+/* ============================================================
+   SPACING — a calm, generous rhythm built on a 4px base.
+   Long-form reading wants air; defaults lean roomy.
+   ============================================================ */
+
+:root {
+  --space-0: 0;
+  --space-1: 0.25rem; /*  4px */
+  --space-2: 0.5rem; /*   8px */
+  --space-3: 0.75rem; /* 12px */
+  --space-4: 1rem; /*    16px */
+  --space-5: 1.5rem; /*  24px */
+  --space-6: 2rem; /*    32px */
+  --space-7: 2.5rem; /*  40px */
+  --space-8: 3.5rem; /*  56px */
+  --space-9: 5rem; /*    80px */
+  --space-10: 7rem; /*  112px */
+
+  /* Reading rhythm — vertical space between prose blocks */
+  --flow-tight: 0.75em;
+  --flow: 1.4em; /* paragraph spacing in prose */
+  --flow-loose: 2em;
+
+  /* Page gutters */
+  --gutter: 1.5rem;
+  --gutter-wide: 2.5rem;
+}
