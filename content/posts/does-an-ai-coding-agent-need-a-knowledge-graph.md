@@ -8,7 +8,7 @@ draft: false
 dropcap: true
 ---
 
-There is now a small industry of tools that promise to make AI coding agents better at their jobs. Graphify is one of the better known. It builds a persistent knowledge graph of a repository: nodes for files, functions, and docs; edges where they reference one another. The agent then queries the graph instead of grepping. Behind the headline claim of “10x developer productivity”, the pitch comes down to three things you can measure: agents should use fewer tokens, reach the right files faster, and produce better results because they understand the architecture.
+There is now a small industry of tools that promise to make AI coding agents better at their jobs. [Graphify](https://github.com/safishamsi/graphify) is one of the better known. It builds a persistent knowledge graph of a repository: nodes for files, functions, and docs; edges where they reference one another. The agent then queries the graph instead of grepping. Behind the headline claim of “10x developer productivity”, the pitch comes down to three things you can measure: agents should use fewer tokens, reach the right files faster, and produce better results because they understand the architecture.
 
 I spent some time measuring those three claims on a codebase I work on.
 
