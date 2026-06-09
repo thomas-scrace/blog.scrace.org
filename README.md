@@ -40,6 +40,8 @@ Drop `-D` to preview exactly what will publish (drafts hidden).
 
 ## Add a post
 
+Posts follow the house style in [`writing_style.md`](writing_style.md).
+
 ```sh
 hugo new posts/my-post-title.md
 ```
@@ -100,9 +102,10 @@ real `width`/`height` to avoid layout shift.
 hugo --gc --minify        # output goes to ./public
 ```
 
-`--gc` cleans unused cache; `--minify` minifies HTML/CSS/XML. CSS is also
-fingerprinted (cache-busting) and stays **under 15 KiB minified (15,360 bytes)**
-— currently ~15 KB, ~4 KB gzipped.
+`--gc` cleans unused cache; `--minify` minifies HTML/CSS/XML. The single
+stylesheet is fingerprinted (cache-busting) and stays **under 15 KiB minified
+(~15.0 KB), ~4 KB gzipped** — even with the design system, light/dark theme,
+and rich table + code styling.
 
 ---
 
@@ -151,7 +154,8 @@ Pull requests run steps 1–3 (build + verify) as a gate, but **do not deploy**.
 5. Push to `master`. The first run creates the Worker and deploys it; add your
    custom domain (`blog.scrace.org`) to the Worker in the Cloudflare dashboard.
 6. Change `baseURL` in [`hugo.toml`](hugo.toml) and the `--baseURL` in the
-   workflow if the domain differs, and set `params.email` to your real address.
+   workflow if the domain differs. `params.email` (the "Write to me" and
+   footer Email links) is set in `hugo.toml`.
 
 ### Alternative: Cloudflare Pages
 

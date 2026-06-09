@@ -10,6 +10,14 @@
 name = "blog"
 compatibility_date = "2026-06-07"
 
+# Attach the custom domain on deploy (the scrace.org zone already lives in
+# this Cloudflare account). Requires the API token to include zone
+# permissions; if yours lacks them, remove this block and attach the domain
+# once in the dashboard instead.
+routes = [
+  { pattern = "blog.scrace.org", custom_domain = true }
+]
+
 [assets]
 directory = "./public"
 # Serve the generated 404.html for unknown paths.

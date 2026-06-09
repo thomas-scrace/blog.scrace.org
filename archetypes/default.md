@@ -10,7 +10,6 @@ draft: true
 # canonicalUrl: ""
 # image: ""          # path to an Open Graph / social image
 # dropcap: true      # opening paragraph gets a gilt drop-cap
-# featured: true      # pin as the "Latest" essay on the home page
 ---
 
 Write the essay here, in sentence case, first person, unhurried.

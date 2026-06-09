@@ -3,7 +3,7 @@
   <div class="page-head">
     <p class="page-head__eyebrow eyebrow">Index</p>
     <h1>{{ .Title }}</h1>
-    {{- with .Content }}{{ . }}{{ else }}<p>Everything published here, newest first.</p>{{ end }}
+    {{- with .Content }}{{ . }}{{ else }}<p>Everything published here is listed newest first.</p>{{ end }}
   </div>
 
   {{- $pages := .Pages -}}

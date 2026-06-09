@@ -15,6 +15,7 @@
         {{- end -}}
       {{- end }}
       <span class="nav__sep" aria-hidden="true"></span>
+      {{- with site.Params.github }}<a class="nav__icon" href="{{ . }}" aria-label="GitHub profile" rel="me noopener" target="_blank">{{ partial "icon.html" (dict "name" "github") }}</a>{{ end }}
       <a class="nav__icon" href="{{ "index.xml" | relURL }}" aria-label="RSS feed">{{ partial "icon.html" (dict "name" "rss") }}</a>
     </nav>
   </div>

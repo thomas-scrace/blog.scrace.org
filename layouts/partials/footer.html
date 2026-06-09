@@ -1,9 +1,6 @@
 <footer class="footer">
   <div class="footer__inner">
-    <p class="footer__brand">
-      {{ site.Params.author | default site.Title }}
-      {{- with site.Params.tagline }}<span class="footer__tagline">{{ . }}</span>{{ end }}
-    </p>
+    <p class="footer__brand">{{ site.Params.author | default site.Title }}</p>
     <div class="footer__links">
       <a href="{{ "index.xml" | relURL }}">RSS</a>
       {{- with site.Params.email }}<a href="mailto:{{ . }}">Email</a>{{ end }}

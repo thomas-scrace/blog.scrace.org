@@ -3,7 +3,7 @@
   <div class="page-head">
     <p class="page-head__eyebrow eyebrow">Tag</p>
     <h1>{{ .Title }}</h1>
-    <p>{{ len .Pages }} {{ cond (eq (len .Pages) 1) "piece" "pieces" }} tagged “{{ .Title }}”.</p>
+    <p>{{ len .Pages }} {{ cond (eq (len .Pages) 1) "piece is" "pieces are" }} tagged “{{ .Title }}”.</p>
   </div>
 
   {{ partial "tag-row.html" (dict "current" .RelPermalink) }}

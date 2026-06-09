@@ -7,7 +7,11 @@
   {{- with .Description }}<p class="article__standfirst">{{ . }}</p>{{ end }}
 
   <div class="byline">
+    {{- with site.Params.avatar }}
+    <img class="avatar" src="{{ . | relURL }}" alt="" width="44" height="44">
+    {{- else }}
     <span class="avatar" aria-hidden="true">{{ site.Params.initials }}</span>
+    {{- end }}
     <div>
       <p class="byline__name">{{ .Params.author | default site.Params.author }}</p>
       <p class="byline__role">{{ site.Params.bylineRole }}</p>

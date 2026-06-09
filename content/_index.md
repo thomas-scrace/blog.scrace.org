@@ -1,6 +1,6 @@
 ---
 title: "Thomas Scrace"
-description: "Essays and notes on reading, attention, and the slow web, by Thomas Scrace."
+description: "Thomas Scrace writes here about whatever happens to be on his mind."
 ---
 
-Essays and notes on reading, attention, and the slow web — by *Thomas Scrace*. Updated when there is something worth saying, and not before.
+I’m *Thomas Scrace*. I write here about whatever happens to be on my mind.

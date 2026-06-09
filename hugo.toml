@@ -17,8 +17,10 @@ capitalizeListTitles = false
   # Address for the "Write to me" / footer "Email" links (mailto:).
   email = "tom@scrace.org"
   initials = "TS"
-  bylineRole = "Reader & writer"
-  tagline = "Written & set in Georgia, by lamplight."
+  # Byline / about portrait. Comment out to fall back to the TS monogram.
+  avatar = "/avatar.jpg"
+  bylineRole = "Engineer & writer"
+  github = "https://github.com/thomas-scrace"
   # Default Open Graph / social-preview image (1200×630). Per-post `image:`
   # front matter overrides it.
   ogImage = "/og-default.png"
@@ -26,25 +28,16 @@ capitalizeListTitles = false
 [taxonomies]
   tag = "tags"
 
-# Top navigation — the masthead. Notebook / Reading point at tag pages; edit
-# freely. The wordmark always links home.
+# Top navigation — the masthead. The wordmark always links home.
 [menu]
   [[menu.main]]
-    name = "Essays"
+    name = "Posts"
     url = "/"
     weight = 1
   [[menu.main]]
-    name = "Notebook"
-    url = "/tags/notebook/"
-    weight = 2
-  [[menu.main]]
-    name = "Reading"
-    url = "/tags/reading/"
-    weight = 3
-  [[menu.main]]
     name = "About"
     url = "/about/"
-    weight = 4
+    weight = 2
 
 [markup]
   [markup.goldmark.renderer]
