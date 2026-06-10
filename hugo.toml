@@ -21,9 +21,10 @@ capitalizeListTitles = false
   avatar = "/avatar.jpg"
   bylineRole = "Engineer & writer"
   github = "https://github.com/thomas-scrace"
-  # Default Open Graph / social-preview image (1200×630). Per-post `image:`
-  # front matter overrides it.
-  ogImage = "/og-default.png"
+  # Default Open Graph / social-preview image. Small and square on purpose:
+  # link unfurls render as a compact card with the page title and description
+  # leading, not a full-width banner. Per-post `image:` front matter overrides.
+  ogImage = "/og-square.jpg"
 
 [taxonomies]
   tag = "tags"
