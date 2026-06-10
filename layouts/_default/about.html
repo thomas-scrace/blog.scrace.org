@@ -2,7 +2,7 @@
 <div class="wrap">
   <div class="about__head">
     {{- with site.Params.avatar }}
-    <img class="avatar avatar--lg" src="{{ . | relURL }}" alt="Thomas Scrace" width="76" height="76">
+    <span class="avatar avatar--lg avatar--photo" style="background-image:url({{ . | relURL }})" role="img" aria-label="Thomas Scrace"></span>
     {{- else }}
     <span class="avatar avatar--lg" aria-hidden="true">{{ site.Params.initials }}</span>
     {{- end }}

@@ -7,8 +7,11 @@
   {{- with .Description }}<p class="article__standfirst">{{ . }}</p>{{ end }}
 
   <div class="byline">
+    {{- /* CSS background, not <img>: decorative, and it keeps link-preview
+           scrapers (LinkedIn falls back to page images) from using the
+           portrait as the unfurl card. */ -}}
     {{- with site.Params.avatar }}
-    <img class="avatar" src="{{ . | relURL }}" alt="" width="44" height="44">
+    <span class="avatar avatar--photo" style="background-image:url({{ . | relURL }})" aria-hidden="true"></span>
     {{- else }}
     <span class="avatar" aria-hidden="true">{{ site.Params.initials }}</span>
     {{- end }}
