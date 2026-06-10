@@ -21,10 +21,11 @@ capitalizeListTitles = false
   avatar = "/avatar.jpg"
   bylineRole = "Engineer & writer"
   github = "https://github.com/thomas-scrace"
-  # Default Open Graph / social-preview image. Small and square on purpose:
-  # link unfurls render as a compact card with the page title and description
-  # leading, not a full-width banner. Per-post `image:` front matter overrides.
-  ogImage = "/og-square.jpg"
+  # No default social-preview image, on purpose: platforms (LinkedIn
+  # especially) blow any og:image up into a large image card. With no image
+  # the unfurl is a compact text card led by the title and description.
+  # A post can still opt in with `image:` front matter.
+  ogImage = ""
 
 [taxonomies]
   tag = "tags"
